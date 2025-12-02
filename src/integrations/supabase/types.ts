@@ -89,44 +89,6 @@ export type Database = {
           },
         ]
       }
-      notifications: {
-        Row: {
-          created_at: string
-          from_user_id: string
-          id: string
-          post_id: string
-          read: boolean
-          type: string
-          user_id: string
-        }
-        Insert: {
-          created_at?: string
-          from_user_id: string
-          id?: string
-          post_id: string
-          read?: boolean
-          type: string
-          user_id: string
-        }
-        Update: {
-          created_at?: string
-          from_user_id?: string
-          id?: string
-          post_id?: string
-          read?: boolean
-          type?: string
-          user_id?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "notifications_post_id_fkey"
-            columns: ["post_id"]
-            isOneToOne: false
-            referencedRelation: "posts"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
       photo_shares: {
         Row: {
           badge_category: string | null
@@ -169,7 +131,6 @@ export type Database = {
           image_path: string | null
           updated_at: string
           user_id: string
-          villain_defeated: string | null
         }
         Insert: {
           badge_category?: string | null
@@ -182,7 +143,6 @@ export type Database = {
           image_path?: string | null
           updated_at?: string
           user_id: string
-          villain_defeated?: string | null
         }
         Update: {
           badge_category?: string | null
@@ -195,7 +155,6 @@ export type Database = {
           image_path?: string | null
           updated_at?: string
           user_id?: string
-          villain_defeated?: string | null
         }
         Relationships: [
           {
@@ -212,6 +171,7 @@ export type Database = {
           avatar_url: string | null
           bio: string | null
           created_at: string
+          email: string | null
           first_name: string | null
           id: string
           last_name: string | null
@@ -223,6 +183,7 @@ export type Database = {
           avatar_url?: string | null
           bio?: string | null
           created_at?: string
+          email?: string | null
           first_name?: string | null
           id?: string
           last_name?: string | null
@@ -234,6 +195,7 @@ export type Database = {
           avatar_url?: string | null
           bio?: string | null
           created_at?: string
+          email?: string | null
           first_name?: string | null
           id?: string
           last_name?: string | null
@@ -245,70 +207,70 @@ export type Database = {
       }
       user_data: {
         Row: {
-          age: number
-          alcool_frequence: string
-          alcool_types: string[]
-          budget_alcool_hebdo_eur: number
-          created_at: string
+          age: number | null
+          alcool_frequence: string | null
+          alcool_types: Json | null
+          budget_alcool_hebdo_eur: number | null
+          created_at: string | null
           emergency_task_personal: string | null
-          energie_base: number
+          energie_base: number | null
           frequence_cardiaque_repos: number | null
           id: string
-          objectif_jours_sans_alcool: number
-          objectifs_personnels: string[]
-          poids_actuel_kg: number
+          objectif_jours_sans_alcool: number | null
+          objectifs_personnels: Json | null
+          poids_actuel_kg: number | null
           poids_avant_arret_kg: number | null
-          sexe: string
-          sommeil_base: number
-          start_date: string
-          stress_base: number
-          taille_cm: number
-          updated_at: string
-          user_id: string
+          sexe: string | null
+          sommeil_base: number | null
+          start_date: string | null
+          stress_base: number | null
+          taille_cm: number | null
+          updated_at: string | null
+          user_id: string | null
         }
         Insert: {
-          age: number
-          alcool_frequence: string
-          alcool_types: string[]
-          budget_alcool_hebdo_eur: number
-          created_at?: string
+          age?: number | null
+          alcool_frequence?: string | null
+          alcool_types?: Json | null
+          budget_alcool_hebdo_eur?: number | null
+          created_at?: string | null
           emergency_task_personal?: string | null
-          energie_base: number
+          energie_base?: number | null
           frequence_cardiaque_repos?: number | null
           id?: string
-          objectif_jours_sans_alcool: number
-          objectifs_personnels: string[]
-          poids_actuel_kg: number
+          objectif_jours_sans_alcool?: number | null
+          objectifs_personnels?: Json | null
+          poids_actuel_kg?: number | null
           poids_avant_arret_kg?: number | null
-          sexe: string
-          sommeil_base: number
-          start_date?: string
-          stress_base: number
-          taille_cm: number
-          updated_at?: string
-          user_id: string
+          sexe?: string | null
+          sommeil_base?: number | null
+          start_date?: string | null
+          stress_base?: number | null
+          taille_cm?: number | null
+          updated_at?: string | null
+          user_id?: string | null
         }
         Update: {
-          age?: number
-          alcool_frequence?: string
-          alcool_types?: string[]
-          budget_alcool_hebdo_eur?: number
-          created_at?: string
+          age?: number | null
+          alcool_frequence?: string | null
+          alcool_types?: Json | null
+          budget_alcool_hebdo_eur?: number | null
+          created_at?: string | null
           emergency_task_personal?: string | null
-          energie_base?: number
+          energie_base?: number | null
           frequence_cardiaque_repos?: number | null
           id?: string
-          objectif_jours_sans_alcool?: number
-          objectifs_personnels?: string[]
-          poids_actuel_kg?: number
+          objectif_jours_sans_alcool?: number | null
+          objectifs_personnels?: Json | null
+          poids_actuel_kg?: number | null
           poids_avant_arret_kg?: number | null
-          sexe?: string
-          sommeil_base?: number
-          start_date?: string
-          stress_base?: number
-          taille_cm?: number
-          updated_at?: string
-          user_id?: string
+          sexe?: string | null
+          sommeil_base?: number | null
+          start_date?: string | null
+          stress_base?: number | null
+          taille_cm?: number | null
+          updated_at?: string | null
+          user_id?: string | null
         }
         Relationships: []
       }
@@ -317,15 +279,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      create_notification: {
-        Args: {
-          p_from_user_id: string
-          p_post_id: string
-          p_type: string
-          p_user_id: string
-        }
-        Returns: undefined
-      }
+      [_ in never]: never
     }
     Enums: {
       [_ in never]: never
